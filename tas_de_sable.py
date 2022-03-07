@@ -57,10 +57,13 @@ def iteration():
         for j in range(0, 5):
             if liste_cellule[i][j] >= 4:
                 liste_cellule[i][j] -= 4
-                liste_cellule[i - 1][j] += 1
-                liste_cellule[i  + 1][j] += 1
-                liste_cellule[i][j - 1] += 1
-                liste_cellule[i][j + 1] += 1
+                if i > 0 and i < 4:
+                    liste_cellule[i-1][j] += 1
+                    liste_cellule[i+1][j] += 1
+                if j > 0 and j < 4:
+                    liste_cellule[i][j-1] += 1
+                    liste_cellule[i][j+1] += 1
+    configuration_courante()
                 
 
 ######################### Pogramme ################################
