@@ -24,9 +24,6 @@ liste_cellule = [[random.randint(0,5) for i in range(cols)] for j in range(rows)
 liste_rectangle = [[0 for i in range(cols)] for j in range(rows)]
 generer = False
 
-####################### Import module #############################
-
-
 
 ######################### Fonctions ###############################
 
@@ -35,8 +32,6 @@ def configuration_initiale():
 
 
 def configuration_courante():
-    #coordonnées_x = event.x
-    #coordonnées_y = event.y
     global generer
     for i in range(0, 5):
         for j in range(0, 5):
@@ -95,7 +90,17 @@ def iteration():
                         liste_cellule[i][j+1] += 1
         modif_configuration_courante()
     #configuration_courante()
-                
+
+
+def clique_cellule(event):
+    x = event.x
+    y = event.y
+    for i in range(5):
+        for j in range(5):
+            if x > j * 100 and x < j * 100 + 100 and y > i * 100 and y < i * 100 + 100:
+                liste_cellule[i][j] += 1
+                modif_configuration_courante()
+
 
 ######################### Pogramme ################################
 
@@ -110,8 +115,9 @@ for i in range(5):
     canvas.create_line((i * 100, 0), (i * 100, 500), fill="blue", width=5)
     canvas.create_line((0, i * 100), (500, i * 100), fill="blue", width=5)
 
+canvas.bind("<Button-1>", clique_cellule)
+
 #print(liste_cellule)
 
 
 racine.mainloop()
-#sephora test#
